@@ -1,0 +1,25 @@
+﻿@model Website.Models.Module_FeaturedContent
+
+@{
+    //sort the Featured Content Items by the order they appear within the Module
+    var featuredItems = Model.FeaturedContent.SortByIDs(Model.FeaturedContentSortIDs);
+}
+
+@if (Model.FeaturedContent != null && featuredItems.Any())
+{
+    <div class="featured-content-module row">
+    @foreach (var item in featuredItems)
+    {
+        <div class="col-md-4 featured-content">
+            <h2>@item.Title</h2>
+            <p>@Html.Raw(item.Summary)</p>
+
+
+            @* Only Output the button if a URL is set for this Featured Content Item *@
+            @if (!string.IsNullOrEmpty(Agility.Web.Data.UrlEval(item.ViewDetailsURL, "url"))) { 
+            <p><a class="btn btn-default" href="@Agility.Web.Data.UrlEval(item.ViewDetailsURL, "url")" role="button">@item.ViewDetailsLabel »</a></p>
+            }
+        </div>
+    }
+    </div>
+}

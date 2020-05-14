@@ -1,0 +1,21 @@
+﻿.tour-tour {
+    max-width: 700px;
+}
+
+.snippet-wrap pre.sh_sourceCode {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -mox-box-shadow: none;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.snippet-wrap .snippet-no-num {
+    padding: .8em .6em .6em;
+}
+
+.sh_navy .sh_sourceCode {
+    background-color: #144164;
+    color: #00ccff;
+}

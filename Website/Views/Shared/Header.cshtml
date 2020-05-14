@@ -1,0 +1,52 @@
+﻿@using Agility.Web.Objects
+@using Agility.Web.Mvc
+@using Website.Extensions
+@model Website.ViewModels.HeaderModel
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			@if (Model.Header.SiteLogo != null)
+			{
+				<a class="navbar-brand" href="/">
+					<img src="@Model.Header.SiteLogo.URL" title="@Model.Header.SiteName" />
+					@Model.Header.SiteName
+				</a>
+			}
+			else
+			{
+				<a class="navbar-brand" href="/">
+					@Model.Header.SiteName
+				</a>
+			}
+
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+
+				@{
+					foreach (var node in Model.Sitemap.RootNode.ChildNodes)
+					{
+
+						if (node.MenuVisible)
+						{
+							<li>
+								<a href="@AgilityHelpers.ResolveUrl(node.Url)" target="@node.Target">@node.Title</a>
+							</li>
+
+
+						}
+
+					}
+				}
+
+			</ul>
+
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>

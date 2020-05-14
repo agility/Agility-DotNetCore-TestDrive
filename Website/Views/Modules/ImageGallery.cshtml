@@ -1,0 +1,71 @@
+﻿@model Website.Models.Module_ImageGallery
+
+@* If module has the gallery initialized and has any images attached *@
+
+<div class="image-gallery">
+
+    @if (Model.ImageGallery != null && Model.ImageGallery.Media.Any())
+    {
+        <div class="row">
+
+            @foreach (var media in Model.ImageGallery.Media)
+            {
+                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+
+                    <a class="thumbnail" href="@media.URL" title="@media.Title" data-html="@media.Description">
+                        @if (media.Thumbnails.ContainsKey("medium") && media.Thumbnails["medium"] != null && !string.IsNullOrEmpty(media.Thumbnails["medium"].URL))
+                        {
+                            <img class="img-responsive" src="@media.Thumbnails["medium"].URL" />
+                        }
+                        else
+                        {
+                            <img class="img-responsive" src="@media.URL" />
+                        }
+                    </a>
+
+                </div>
+            }
+
+        </div>
+    }
+
+    <div style="display: none" id="modal-template-gallery">
+        <div class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-image"></div>
+                        <div class="modal-html"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script type="text/javascript">
+    
+        $('.image-gallery .thumbnail').click(function (e) {
+            e.preventDefault();
+            var $anchor = $(this);
+
+            var image = $anchor.attr('href');
+            var title = $anchor.attr('title');
+            var html = $anchor.data('html');
+                    
+            var $galleryModal = $('#modal-template-gallery').children('div').clone();
+
+            $('.modal-image', $galleryModal).html($('<img class="full-res" src="' + image + '" /></div></div></div>'))
+            $('.modal-title', $galleryModal).text(title);
+            $('.modal-html', $galleryModal).html(html);
+
+            $galleryModal.modal();
+
+            return false;
+        });
+    
+</script>*@

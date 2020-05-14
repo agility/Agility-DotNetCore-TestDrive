@@ -1,0 +1,21 @@
+﻿@model Website.Models.Module_Jumbotron
+
+
+@* Do a check to ensure this module at least has a title before attempting to output HTML *@
+@if (!string.IsNullOrEmpty(Model.Title))
+{
+    <div class="jumbotron">
+
+        <h1>@Model.Title</h1>
+
+        @Html.Raw(Model.Summary)
+       
+
+
+        @* Output the button only if a URL is set within the Module *@
+        @if(!string.IsNullOrEmpty(Agility.Web.Data.UrlEval(Model.LearnMoreURL, "url"))) {
+        <p><a href="@Agility.Web.Data.UrlEval(Model.LearnMoreURL, "url")" class="btn btn-primary btn-lg" role="button">@Model.LearnMoreLabel »</a></p>
+        }
+        
+    </div>
+}

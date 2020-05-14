@@ -1,0 +1,47 @@
+﻿@model Website.ViewModels.ProductList
+
+@{
+    int i = 1;
+    
+    foreach (var product in Model.Products)
+    {
+
+        <div class="item col-xs-6 col-lg-4">
+            <div class="thumbnail">
+                @if (product.ListingImage != null)
+                {
+                    <img class="group list-group-image" src="@product.ListingImage.URL" alt="" />
+                }
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        @product.Title
+                    </h4>
+                    <p class="group inner list-group-item-text">
+                        @Html.Raw(product.Summary)
+                    </p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <p class="lead">
+                                @string.Format("{0:C}", product.Price)
+                            </p>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <a class="btn btn-success" href="@product.Url">@Model.Module.ViewProductLabel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        if(i % 2 == 0){
+            <div class="clearfix hidden-lg"></div>
+        }
+        
+        if(i % 3 == 0){
+            <div class="clearfix visible-lg"></div>
+        }
+
+        i++;
+    }
+
+}

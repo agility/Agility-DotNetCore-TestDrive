@@ -1,0 +1,29 @@
+﻿@model Website.ViewModels.ProductDetailsModule
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            @Model.Product.Title
+            @if (Model.Category != null) { 
+            <small>@Model.Category.Title</small>
+            }
+        </h1>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-8">
+        @if (Model.Product.MainImage != null) { 
+        <img class="img-responsive" src="@Model.Product.MainImage.URL">
+        }
+    </div>
+
+    <div class="col-md-4">
+            <h3>@string.Format("{0:C}", Model.Product.Price)</h3>
+            @Html.Raw(Model.Product.Details)
+    </div>
+
+</div>

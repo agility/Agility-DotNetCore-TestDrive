@@ -1,0 +1,57 @@
+﻿@using Website.ViewModels
+@model Website.ViewModels.ProductListingModule
+
+<div class="product-details">
+
+    <h1>@Model.Module.Title</h1>
+
+    <div class="well well-sm">
+        <strong>@Model.Module.FilterViewLabel</strong>
+        <div class="btn-group">
+            <a href="#" id="list" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-th-list">
+                </span>
+            </a> <a href="#" id="grid" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-th"></span>
+            </a>
+        </div>
+
+        <strong>@Model.Module.FilterCategoriesLabel</strong>
+        <div class="dropdown categories">
+            <button class="btn btn-default dropdown-toggle categories-toggle" type="button" id="categories-button" data-toggle="dropdown">
+                @if (Model.FilteredCategory != null)
+                {
+                    @Model.FilteredCategory.Title
+                }
+                else
+                {
+                    @Model.Module.FilterCategoriesAllLabel
+                }
+                <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu categories-filter" role="menu" aria-labelledby="categories-button">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-category="0">@Model.Module.FilterCategoriesAllLabel</a></li>  
+                @foreach (var category in Model.Categories)
+                {
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="?category=@category.ContentID" data-category="@category.ContentID">@category.Title</a></li>
+                }
+            </ul>
+
+        </div>
+
+
+    </div>
+
+    @if (Model.Products.Any())
+    {
+        <div id="products" class="row list-group">            
+            
+            @Html.Partial("~/Views/Products/ProductListing.cshtml", new ProductList() { Module = Model.Module, Products = Model.Products })
+        </div>
+    }
+    
+    @*TODO: include the pagination...*@
+    @*@Html.Partial("~/Views/Shared/Pagination.cshtml", Model.Pagination)*@
+
+</div>

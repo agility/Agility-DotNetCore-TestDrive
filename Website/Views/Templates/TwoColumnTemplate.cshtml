@@ -1,0 +1,17 @@
+﻿
+@using Agility.Web;
+@using Agility.Web.Mvc;
+
+<div class="container theme-showcase two-column-template contentWrap" role="main">
+    <div class="row">
+
+        <div class="col-md-8">
+			@await Component.RenderContentZone("MainContentZone")
+        </div>
+
+        <div class="col-md-4">
+			@await Component.RenderContentZone("SidebarContentZone")
+        </div>
+
+    </div>
+</div>

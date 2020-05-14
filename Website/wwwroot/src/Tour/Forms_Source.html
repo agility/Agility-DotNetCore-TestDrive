@@ -1,0 +1,36 @@
+﻿
+<p>Take the pain away from forms! Use the built-in Form module to create a Form based off of your properties (text, images, files, etc.) and submit to User Generate Content (UGC) with no development required.</p>
+
+<p>Want something custom? Use the UGC API to save, search, or delete your content as you like. UGC API is available in JavaScript and C#</p>
+
+
+
+<label>UGC API - JavaScript</label>
+<pre class="javascript">
+
+//construct a new record object
+//set the ID to -1 if new, else use existing ID to modify existing record
+//the RecordTypeName is required, specified in Agility
+//the FirstName and LastName fields are custom fields
+var record = {
+    ID: -1,
+    RecordTypeName: &quot;Submission&quot;, 
+    EmailAddress: &quot;John@Doe.com&quot;,
+    FirstName: &quot;John&quot;
+}
+ 
+//save the record
+Agility.UGC.API.SaveRecord(record, function(data) { 
+     
+    if (data.ResponseType != Agility.UGC.API.ResponseType.OK) {
+        //error occurred
+        alert(&quot;An error occurred: &quot; + data.Message);            
+    } else {
+        //data.ResponseData is the recordID of the saved record.
+        var recordID = data.ResponseData;       
+    }
+});
+
+</pre>
+
+

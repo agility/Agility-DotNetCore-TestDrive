@@ -1,0 +1,12 @@
+﻿
+<p>Here's an example of a more complex Module that lists all products in a Content List and also give us the options of filtering by a category. Agility provides you with auto-generated strongly typed C# API classes based on your content and module definitions. Build your schema, download your classes, get coding!</p>
+
+
+<pre class="csharp">
+int skip = (page - 1) * pageSize;
+int take = pageSize;
+
+string rowFilter = string.Format(&quot;ProductCategoryID = {0}&quot;, categoryID);
+
+var products = new AgilityContentRepository&lt;Product&gt;(&quot;Products&quot;).Items(rowFilter, &quot;Title ASC&quot;, take, skip);
+</pre>

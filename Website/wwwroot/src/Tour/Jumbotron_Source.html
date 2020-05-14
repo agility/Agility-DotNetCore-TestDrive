@@ -1,0 +1,23 @@
+﻿<p>This is a simple module which takes input from a content editor and displays a highlighted message with an optional link.</p>
+
+<pre class="html">
+    @model Website.Models.Module_Jumbotron
+
+
+    @* Do a check to ensure this module at least has a title before attempting to output HTML *@
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+    &lt;div class=&quot;jumbotron&quot;&gt;
+
+        &lt;h1&gt;@Model.Title&lt;/h1&gt;
+        &lt;p&gt;@Html.Raw(Model.Summary)&lt;/p&gt;
+
+
+        @* Output the button only if a URL is set within the Module *@
+        @if(!string.IsNullOrEmpty(Data.UrlEval(Model.LearnMoreURL, &quot;url&quot;))) {
+        &lt;p&gt;&lt;a href=&quot;@Data.UrlEval(Model.LearnMoreURL, &quot; url&quot;)&quot; class=&quot;btn btn-primary btn-lg&quot; role=&quot;button&quot;&gt;@Model.LearnMoreLabel &#187;&lt;/a&gt;&lt;/p&gt;
+        }
+
+    &lt;/div&gt;
+    }
+</pre>

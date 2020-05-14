@@ -1,0 +1,31 @@
+﻿<p>This is another module which allows content editors to create one or more Featured Content boxes, each containing a Title, Summary, and URL</p>
+
+
+<pre class="html">
+
+@model Website.Models.Module_FeaturedContent
+
+@{
+    //sort the Featured Content Items by the order they appear within the Module
+    var featuredItems = Model.FeaturedContent.SortByIDs(Model.FeaturedContentSortIDs);
+}
+
+@if (Model.FeaturedContent != null &amp;&amp; featuredItems.Any())
+{
+    &lt;div class=&quot;featured-content-module row&quot;&gt;
+    @foreach (var item in featuredItems)
+    {
+        &lt;div class=&quot;col-md-4 featured-content&quot;&gt;
+            &lt;h2&gt;@item.Title&lt;/h2&gt;
+            &lt;p&gt;@Html.Raw(item.Summary)&lt;/p&gt;
+
+
+            @* Only Output the button if a URL is set for this Featured Content Item *@
+            @if (!string.IsNullOrEmpty(Data.UrlEval(item.ViewDetailsURL, &quot;url&quot;))) { 
+            &lt;p&gt;&lt;a class=&quot;btn btn-default&quot; href=&quot;@Data.UrlEval(item.ViewDetailsURL, &quot;url&quot;)&quot; role=&quot;button&quot;&gt;@item.ViewDetailsLabel &#187;&lt;/a&gt;&lt;/p&gt;
+            }
+        &lt;/div&gt;
+    }
+    &lt;/div&gt;
+}
+</pre>

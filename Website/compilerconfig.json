@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "wwwroot/src/scss/Site.css",
+    "inputFile": "wwwroot/src/scss/Site.scss"
+  },
+  {
+    "outputFile": "wwwroot/src/scss/global.css",
+    "inputFile": "wwwroot/src/scss/global.scss"
+  },
+  {
+    "outputFile": "Css/global.css",
+    "inputFile": "Css/global.scss"
+  }
+]
